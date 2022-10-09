@@ -40,19 +40,19 @@ changeSystem() {
 
 installPanel() {
   #首先宝塔面板7.7原版
-  echo -e "=========Running 安装宝塔面板7.7原版=========\n"
+  green -e "=========Running 安装宝塔面板7.7原版=========\n"
   curl -sSO https://raw.githubusercontent.com/zhucaidan/btpanel-v7.7.0/main/install/install_panel.sh && bash install_panel.sh
 }
 
 changePanel() {
    #然后执行一键开心脚本
-  echo "=========Running 一键开心脚本========="
+  green "=========Running 一键开心脚本========="
   curl -sSO https://raw.githubusercontent.com/ztkink/bthappy/main/one_key_happy.sh && bash one_key_happy.sh
 }
 
 repairPanel() {
   #最后执行下一键优化补丁
-  echo "=========Running 优化补丁========="
+  green "=========Running 优化补丁========="
   wget -O optimize.sh http://f.cccyun.cc/bt/optimize.sh && bash optimize.sh
 }
 
@@ -96,6 +96,7 @@ function start_menu() {
   green "3. 安装原宝塔7.7"
   green "4. 一键宝塔开心"
   green "5. 安装优化补丁"
+  green "0. 退出脚本"
   
   
   echo
