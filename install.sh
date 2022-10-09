@@ -6,16 +6,16 @@ echo "Satrt Running"
 startInstallPanel() {
   echo "****************Running****************"
   #安装更新运行环境（Debian系统）
-  apt update -y && apt dist-upgrade -y && apt install -y curl && apt install -y socat
-  apt-get install -y xz-utils openssl gawk file wget screen && screen -S os
+  apt update -y && apt dist-upgrade -y && apt install -y curl && apt install -y socat &&
+  apt-get install -y xz-utils openssl gawk file wget screen && screen -S os &&
   # 更改SSH终端中文语言
-  wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/LocaleCN/master/LocaleCN.sh && bash LocaleCN.sh
+  wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/LocaleCN/master/LocaleCN.sh && bash LocaleCN.sh &&
   # 更改服务器时区为上海
-  timedatectl set-timezone 'Asia/Shanghai'
+  timedatectl set-timezone 'Asia/Shanghai' &&
   #首先宝塔面板7.7原版
-  curl -sSO https://raw.githubusercontent.com/zhucaidan/btpanel-v7.7.0/main/install/install_panel.sh && bash install_panel.sh
+  curl -sSO https://raw.githubusercontent.com/zhucaidan/btpanel-v7.7.0/main/install/install_panel.sh && bash install_panel.sh &&
   #然后执行一键开心脚本
-  curl -sSO https://raw.githubusercontent.com/ztkink/bthappy/main/one_key_happy.sh && bash one_key_happy.sh
+  curl -sSO https://raw.githubusercontent.com/ztkink/bthappy/main/one_key_happy.sh && bash one_key_happy.sh &&
   #最后执行下一键优化补丁
   wget -O optimize.sh http://f.cccyun.cc/bt/optimize.sh && bash optimize.sh
 }
