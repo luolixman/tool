@@ -5,7 +5,10 @@ echo "Satrt Running"
 
 startInstallPanel() {
   echo "****************Running****************"
-  apt update -y && apt dist-upgrade -y && apt install -y curl && apt install -y socat && apt-get install -y xz-utils openssl gawk file wget screen && screen -S os && wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/LocaleCN/master/LocaleCN.sh && bash LocaleCN.sh && timedatectl set-timezone 'Asia/Shanghai' && curl -sSO https://raw.githubusercontent.com/zhucaidan/btpanel-v7.7.0/main/install/install_panel.sh && bash install_panel.sh && curl -sSO https://raw.githubusercontent.com/ztkink/bthappy/main/one_key_happy.sh && bash one_key_happy.sh && wget -O optimize.sh http://f.cccyun.cc/bt/optimize.sh && bash optimize.sh
+  
+  echo "123"
+  wait
+  echo "456"
 }
 
 checkSystem() {
