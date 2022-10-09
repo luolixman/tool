@@ -56,31 +56,20 @@ repairPanel() {
   wget -O optimize.sh http://f.cccyun.cc/bt/optimize.sh && bash optimize.sh
 }
 
-checkSystem() {
-  if [[ -n $(find /etc -name "redhat-release") ]] || grep </proc/version -q -i "centos"; then
-    # 检测系统版本号
-    centosVersion=$(rpm -q centos-release | awk -F "[-]" '{print $3}' | awk -F "[.]" '{print $1}')
-    if [[ -z "${centosVersion}" ]] && grep </etc/centos-release "release 8"; then
-      centosVersion=8
-    fi
-    release="centos"
+installXui() {
+  green "安装X-ui面板"
+  bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
+}
 
-  elif grep </etc/issue -q -i "debian" && [[ -f "/etc/issue" ]] || grep </etc/issue -q -i "debian" && [[ -f "/proc/version" ]]; then
-    if grep </etc/issue -i "8"; then
-      debianVersion=8
-    fi
-    release="debian"
+installDocker() {
+  green "安装docker(国内)"
+  curl -sSL https://get.daocloud.io/docker | sh
+}
 
-  elif grep </etc/issue -q -i "ubuntu" && [[ -f "/etc/issue" ]] || grep </etc/issue -q -i "ubuntu" && [[ -f "/proc/version" ]]; then
-    release="ubuntu"
-  fi
-
-  if [[ -z ${release} ]]; then
-    echo "其他系统"
-    exit 0
-  else
-    echo "当前系统为${release}"
-  fi
+installTelegram() {
+  green "安装TG代理"
+  apt install -y curl
+  bash <(curl -sL https://s.hijk.art/mtproto.sh)
 }
 
 
@@ -96,6 +85,9 @@ function start_menu() {
   green "3. 安装原宝塔7.7"
   green "4. 一键宝塔开心"
   green "5. 安装优化补丁"
+  green "6. 安装X-ui面板"
+  green "7. 安装docker(国内)"
+  green "8. 安装TG代理"
   green "0. 退出脚本"
   
   
@@ -124,6 +116,21 @@ function start_menu() {
         ;;
         5 )
             repairPanel
+            sleep 10s
+            start_menu
+        ;;
+        6 )
+            installXui
+            sleep 10s
+            start_menu
+        ;;
+        7 )
+            installDocker
+            sleep 10s
+            start_menu
+        ;;
+        8 )
+            installTelegram
             sleep 10s
             start_menu
         ;;
