@@ -109,7 +109,7 @@ function start_menu() {
         ;;
         2 )
             changeSystem
-            sleep 10s
+            sleep 3s
             start_menu
         ;;
         3 )
