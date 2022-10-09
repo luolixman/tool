@@ -128,6 +128,7 @@ function start_menu() {
             start_menu
         ;;
         0 )
+        green "退出脚本"
             exit 1
         ;;
         * )
