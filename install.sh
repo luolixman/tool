@@ -6,9 +6,9 @@ echo "Satrt Running"
 startInstallPanel() {
   echo "****************Running****************"
   
-  echo "123"
+  wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/LocaleCN/master/LocaleCN.sh && bash LocaleCN.sh
   wait
-  echo "456"
+  timedatectl set-timezone 'Asia/Shanghai'
 }
 
 checkSystem() {
