@@ -1,32 +1,23 @@
 #!/bin/bash
 
 #主程序开始
-echo "Satrt Running"
-
-startInstallPanel() {
-  updateSystem
-  wait
-  changeSystem
-  wait
-  changePanel
-}
 
 updateSystem() {
    #安装更新运行环境（Debian系统）
-  echo "=========Running 安装更新运行环境========="
+  green "=========Running 安装更新运行环境========="
   apt update -y && apt dist-upgrade -y && apt install -y curl && apt install -y socat
   wait
-  echo "=========Running 安装更新运行环境========="
+  green "=========Running 安装更新运行环境========="
   apt-get install -y xz-utils openssl gawk file wget screen && screen -S os
 }
 
 changeSystem() {
   # 更改SSH终端中文语言
-  echo "=========Running 更改SSH终端语言========="
+  green "=========Running 更改SSH终端语言========="
   wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/LocaleCN/master/LocaleCN.sh && bash LocaleCN.sh
   wait
   # 更改服务器时区为上海
-  echo "=========Running 更改服务器时区========="
+  green "=========Running 更改服务器时区========="
   timedatectl set-timezone 'Asia/Shanghai'
 }
 
@@ -62,11 +53,9 @@ checkSystem() {
       debianVersion=8
     fi
     release="debian"
-    startInstallPanel
 
   elif grep </etc/issue -q -i "ubuntu" && [[ -f "/etc/issue" ]] || grep </etc/issue -q -i "ubuntu" && [[ -f "/proc/version" ]]; then
     release="ubuntu"
-    startInstallPanel
   fi
 
   if [[ -z ${release} ]]; then
@@ -76,8 +65,60 @@ checkSystem() {
     echo "当前系统为${release}"
   fi
 }
-checkSystem
 
 
+function start_menu() {
+  clear
+  
+  green " ======================================================"
+  green "                 Luolix 便捷安装脚本"
+  green " ======================================================"
+  echo 
+  green "便捷安装脚本"
+  green "1. 更新运行环境"
+  green "2. 更改SSH语言和服务器时区"
+  green "3. 安装原宝塔7.7"
+  green "4. 一键宝塔开心"
+  green "5. 安装优化补丁"
+  
+  
+  echo
+  read -p "Please input number:" menuNumberInput
+    case "$menuNumberInput" in
+        1 )
+            updateSystem
+            sleep 10s
+            start_menu
+        ;;
+        2 )
+            changeSystem
+            sleep 10s
+            start_menu
+        ;;
+        3 )
+            installPanel
+            sleep 10s
+            start_menu
+        ;;
+        4 )
+            changePanel
+            sleep 10s
+            start_menu
+        ;;
+        5 )
+            repairPanel
+            sleep 10s
+            start_menu
+        ;;
+        0 )
+            exit 1
+        ;;
+        * )
+            clear
+            red "请输入正确数字 !"
+            sleep 2s
+            start_menu
+        ;;
+     esac
+}
 
-echo "End"
