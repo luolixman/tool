@@ -2,6 +2,23 @@
 
 #主程序开始
 
+# fonts color
+red(){
+    echo -e "\033[31m\033[01m$1\033[0m"
+}
+green(){
+    echo -e "\033[32m\033[01m$1\033[0m"
+}
+yellow(){
+    echo -e "\033[33m\033[01m$1\033[0m"
+}
+blue(){
+    echo -e "\033[34m\033[01m$1\033[0m"
+}
+bold(){
+    echo -e "\033[1m\033[01m$1\033[0m"
+}
+
 updateSystem() {
    #安装更新运行环境（Debian系统）
   green "=========Running 安装更新运行环境========="
@@ -83,7 +100,7 @@ function start_menu() {
   
   
   echo
-  read -p "Please input number:" menuNumberInput
+  read -p "请选择你的序号:" menuNumberInput
     case "$menuNumberInput" in
         1 )
             updateSystem
