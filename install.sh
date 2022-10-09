@@ -4,31 +4,47 @@
 echo "Satrt Running"
 
 startInstallPanel() {
-  #安装更新运行环境（Debian系统）
-  echo "=========Running 1 安装更新运行环境========="
+  updateSystem
+  wait
+  changeSystem
+  wait
+  changePanel
+}
+
+updateSystem() {
+   #安装更新运行环境（Debian系统）
+  echo "=========Running 安装更新运行环境========="
   apt update -y && apt dist-upgrade -y && apt install -y curl && apt install -y socat
   wait
-  echo "=========Running 2 安装更新运行环境========="
+  echo "=========Running 安装更新运行环境========="
   apt-get install -y xz-utils openssl gawk file wget screen && screen -S os
-  wait
+}
+
+changeSystem() {
   # 更改SSH终端中文语言
-  echo "=========Running 3 更改SSH终端语言========="
+  echo "=========Running 更改SSH终端语言========="
   wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/LocaleCN/master/LocaleCN.sh && bash LocaleCN.sh
   wait
   # 更改服务器时区为上海
-  echo "=========Running 4 更改服务器时区========="
+  echo "=========Running 更改服务器时区========="
   timedatectl set-timezone 'Asia/Shanghai'
-  wait
+}
+
+installPanel() {
   #首先宝塔面板7.7原版
-  echo "=========Running 5 安装宝塔面板7.7原版========="
+  echo -e "=========Running 安装宝塔面板7.7原版=========\n"
   curl -sSO https://raw.githubusercontent.com/zhucaidan/btpanel-v7.7.0/main/install/install_panel.sh && bash install_panel.sh
-  wait
-  #然后执行一键开心脚本
-  echo "=========Running 6 一键开心脚本========="
+}
+
+changePanel() {
+   #然后执行一键开心脚本
+  echo "=========Running 一键开心脚本========="
   curl -sSO https://raw.githubusercontent.com/ztkink/bthappy/main/one_key_happy.sh && bash one_key_happy.sh
-  wait
+}
+
+repairPanel() {
   #最后执行下一键优化补丁
-  echo "=========Running 7 优化补丁========="
+  echo "=========Running 优化补丁========="
   wget -O optimize.sh http://f.cccyun.cc/bt/optimize.sh && bash optimize.sh
 }
 
