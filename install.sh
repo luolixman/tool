@@ -4,6 +4,7 @@
 echo "Satrt Running"
 
 startInstallPanel() {
+  echo "****************Running****************"
   #安装更新运行环境（Debian系统）
   apt update -y && apt dist-upgrade -y && apt install -y curl && apt install -y socat
   apt-get install -y xz-utils openssl gawk file wget screen && screen -S os
@@ -32,12 +33,12 @@ checkSystem() {
     if grep </etc/issue -i "8"; then
       debianVersion=8
     fi
-    startInstallPanel
     release="debian"
+    startInstallPanel
 
   elif grep </etc/issue -q -i "ubuntu" && [[ -f "/etc/issue" ]] || grep </etc/issue -q -i "ubuntu" && [[ -f "/proc/version" ]]; then
-    startInstallPanel
     release="ubuntu"
+    startInstallPanel
   fi
 
   if [[ -z ${release} ]]; then
