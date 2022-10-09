@@ -102,7 +102,7 @@ function start_menu() {
     case "$menuNumberInput" in
         1 )
             updateSystem
-            sleep 10s
+            sleep 3s
             start_menu
         ;;
         2 )
@@ -112,37 +112,30 @@ function start_menu() {
         ;;
         3 )
             installPanel
-            sleep 10s
             start_menu
         ;;
         4 )
             changePanel
-            sleep 10s
             start_menu
         ;;
         5 )
             repairPanel
-            sleep 10s
             start_menu
         ;;
         6 )
             installXui
-            sleep 10s
             start_menu
         ;;
         7 )
             installDocker
-            sleep 10s
             start_menu
         ;;
         8 )
             installTelegram
-            sleep 10s
             start_menu
         ;;
         9 )
             openOneShell
-            sleep 10s
             start_menu
         ;;
         0 )
