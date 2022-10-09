@@ -72,6 +72,11 @@ installTelegram() {
   bash <(curl -sL https://s.hijk.art/mtproto.sh)
 }
 
+openOneShell() {
+  green "多功能一键脚本"
+  bash <(curl -Lso- https://git.io/oneclick)
+}
+
 
 function start_menu() {
   clear
@@ -88,6 +93,7 @@ function start_menu() {
   green "6. 安装X-ui面板"
   green "7. 安装docker(国内)"
   green "8. 安装TG代理"
+  green "9. 多功能一键脚本"
   green "0. 退出脚本"
   
   
@@ -131,6 +137,11 @@ function start_menu() {
         ;;
         8 )
             installTelegram
+            sleep 10s
+            start_menu
+        ;;
+        9 )
+            openOneShell
             sleep 10s
             start_menu
         ;;
