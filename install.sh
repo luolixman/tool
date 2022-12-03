@@ -79,7 +79,6 @@ openOneShell() {
 
 
 function start_menu() {
-  clear
   echo
   green " ======================================="
   green "          Luolix 便捷安装脚本"
