@@ -203,4 +203,4 @@ $(document).ready(function () {
         $('#updata_pro_info').html('');
         bt.set_cookie('productPurchase', 1);
     }
-})
+}) 
