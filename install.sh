@@ -53,7 +53,7 @@ changePanel() {
 repairPanel() {
   #最后执行下一键优化补丁
   green "=========Running 优化补丁========="
-  wget -O optimize.sh http://f.cccyun.cc/bt/optimize.sh && bash optimize.sh
+  wget -O optimize.sh https://raw.luolix.top/luolixman/tool/main/optimize.sh && bash optimize.sh
 }
 
 installXui() {
