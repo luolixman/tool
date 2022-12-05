@@ -31,7 +31,7 @@ updateSystem() {
 changeSystem() {
   # 更改SSH终端中文语言
   green "=========Running 更改SSH终端语言========="
-  wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/LocaleCN/master/LocaleCN.sh && bash LocaleCN.sh
+  wget -N --no-check-certificate https://raw.luolix.top/FunctionClub/LocaleCN/master/LocaleCN.sh && bash LocaleCN.sh
   wait
   # 更改服务器时区为上海
   green "=========Running 更改服务器时区========="
@@ -41,24 +41,24 @@ changeSystem() {
 installPanel() {
   #首先宝塔面板7.7原版
   green -e "=========Running 安装宝塔面板7.7原版=========\n"
-  curl -sSO https://raw.githubusercontent.com/zhucaidan/btpanel-v7.7.0/main/install/install_panel.sh && bash install_panel.sh
+  curl -sSO https://raw.luolix.top/zhucaidan/btpanel-v7.7.0/main/install/install_panel.sh && bash install_panel.sh
 }
 
 changePanel() {
    #然后执行一键开心脚本
   green "=========Running 一键开心脚本========="
-  curl -sSO https://raw.githubusercontent.com/ztkink/bthappy/main/one_key_happy.sh && bash one_key_happy.sh
+  curl -sSO https://raw.luolix.top/ztkink/bthappy/main/one_key_happy.sh && bash one_key_happy.sh
 }
 
 repairPanel() {
   #最后执行下一键优化补丁
   green "=========Running 优化补丁========="
-  wget -O optimize.sh https://raw.luolix.top/luolixman/tool/main/optimize.sh && bash optimize.sh
+  wget -O optimize.sh https://raw.luolix.top/luolixman/tool/main/bt/bt_optimize.sh && bash optimize.sh
 }
 
 installXui() {
   green "安装X-ui面板"
-  bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh)
+  bash <(curl -Ls https://raw.luolix.top/FranzKafkaYu/x-ui/master/install.sh)
 }
 
 installDocker() {
@@ -93,6 +93,7 @@ function start_menu() {
   green "7. 安装docker(国内)"
   green "8. 安装TG代理"
   green "9. 多功能一键脚本"
+  green "10. 一键梭哈宝塔"
   green "0. 退出脚本"
   
   
@@ -111,6 +112,7 @@ function start_menu() {
         ;;
         3 )
             installPanel
+            sleep 10s
             start_menu
         ;;
         4 )
@@ -135,6 +137,14 @@ function start_menu() {
         ;;
         9 )
             openOneShell
+            start_menu
+        ;;
+        10 )
+            updateSystem
+            changeSystem
+            installPanel
+            changePanel
+            repairPanel
             start_menu
         ;;
         0 )
